@@ -1,8 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import React from"react";
 
 function App() {
-  return (
+    const[data,setData]=React.useState(null);
+    React.useEffect(()=>{
+        fetch("/users")
+        .then((res)=>res.json())
+        .then((json)=>setData(json));
+    });
+  return(
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,6 +25,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <p>{!data?"Loading...":"name: "+data.name}</p>
     </div>
   );
 }
