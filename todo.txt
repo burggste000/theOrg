@@ -1,0 +1,3 @@
+Bugs:
+    -When the screen gets really small, the Download CSV button splits in two. Stop this from happening.
+    -Make the header the right size. Stop it from being smaller than the content that's inside of it.
