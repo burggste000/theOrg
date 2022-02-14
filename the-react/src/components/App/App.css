@@ -17,6 +17,8 @@ header{
     border-style:solid;
     border-width:5px;
     font-weight:bolder;
+    border-radius:24px;
+    margin-bottom:10px;
 }
 .menu:hover{
     background-color:silver;
