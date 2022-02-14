@@ -14,7 +14,7 @@ export default function App() {
             <input type="button" id="upload" class="menu"value="Upload" />
             <input id="addBtn" type="button" value="Add Employee" class="menu" />
             <input type="button" value="Delete Employee" class="menu" />
-            <a href="/api/csv"id="downloadCSV"class="menu"download="org.csv">Download CSV</a>
+            <a href="/api/csv"id="downloadCSV"class="menu"download="org.csv">Download</a>
         </header>
 
     // <div className="App">
