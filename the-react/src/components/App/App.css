@@ -16,8 +16,9 @@ header{
     border-width:3px;
     font-weight:bolder;
     border-radius:24px;
-    width:25vw;
     white-space:nowrap;
+    display:inline-block;
+    margin:4px;
 }
 .menu:hover{
     background-color:silver;
