@@ -1,4 +1,4 @@
-import './App.css';
+import './app.css';
 import React from"react";
 //The commented stuff, Dad had me put in to have the server interactable with the front-end.
 export default function App() {
