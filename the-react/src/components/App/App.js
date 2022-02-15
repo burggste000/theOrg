@@ -1,5 +1,6 @@
 import './app.css';
 import React from"react";
+import{Header}from"../Header/Header.js";
 //The commented stuff, Dad had me put in to have the server interactable with the front-end.
 export default function App() {
     // const[data,setData]=React.useState(null);
@@ -9,15 +10,9 @@ export default function App() {
     //     .then((json)=>setData(json));
     // });
   return(
-        <header>
-            <div id="btnDiv">
-            <input type="file" id="fileUpload" />
-            <input type="button" id="upload" class="menu"value="Upload" />
-            <input id="addBtn" type="button" value="Add Employee" class="menu" />
-            <input type="button" value="Delete Employee" class="menu" />
-            <a href="/api/csv"id="downloadCSV"class="menu"download="org.csv">Download</a>
-            </div>
-        </header>
+    <>
+        <Header />
+    </>
 
     // <div className="App">
     //   <header className="App-header">

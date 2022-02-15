@@ -1,0 +1,40 @@
+header{
+    display:flex;
+    justify-content:center;
+}
+#btnDiv{
+    position:fixed;
+    margin-top:5px;
+}
+#fileUpload{
+    display:none;
+}
+.menu{
+    background-color:rgb(183, 173, 153);
+    font-size:150%;
+    border-top:grey;
+    border-left:grey;
+    border-right:black;
+    border-bottom:black;
+    border-style:solid;
+    border-width:3px;
+    font-weight:bolder;
+    border-radius:24px;
+    white-space:nowrap;
+    margin:4px;
+    display:inline-block;
+}
+.menu:hover{
+    background-color:silver;
+    cursor:pointer;
+}
+#downloadCSV{
+    text-decoration-line:none;
+    color:black;
+    font-family:Arial;
+    padding-top:2px;
+    padding-left:6px;
+    padding-right:6px;
+    padding-bottom:2px;
+}
+
