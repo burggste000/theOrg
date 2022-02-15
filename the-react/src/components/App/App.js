@@ -1,4 +1,4 @@
-import './app.css';
+import'./app.css';
 import React from"react";
 import{Header}from"../Header/Header.js";
 //The commented stuff, Dad had me put in to have the server interactable with the front-end.
