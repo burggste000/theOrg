@@ -1,4 +1,8 @@
 header{
+    display:flex;
+    justify-content:center;
+}
+#btnDiv{
     position:fixed;
     margin-top:5px;
 }
