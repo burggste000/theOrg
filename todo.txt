@@ -1,3 +1,4 @@
-Bugs:
-    -Make the header the right size. Stop it from being smaller than the content that's inside of it.
-    -Center the buttons inside of the header.
+Tasks:
+    -Make the chart.
+    -Make the chart contain many employee objects
+    -Make the employee objects have a line connecting them to their manager
