@@ -1,3 +1,4 @@
+import"./add.css";
 const Add=()=>{
     return(
         <div class="form-popup" id="myForm">
