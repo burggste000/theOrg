@@ -3,6 +3,7 @@ import React from"react";
 import{Header}from"../Header/Header.js";
 import{Chart}from"../Chart/Chart.js";
 import{Add}from"../Add/Add.js";
+import{Delete}from"../Delete/Delete.js";
 //The commented stuff, Dad had me put in to have the server interactable with the front-end.
 export default function App() {
     // const[data,setData]=React.useState(null);
@@ -15,6 +16,7 @@ export default function App() {
     <>
         <Header />
         <Add />
+        <Delete />
         <Chart />
     </>
 
