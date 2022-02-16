@@ -24,8 +24,9 @@ const Chart=()=>{
     React.useEffect(()=>{
         fetch("/api/employees")
         .then(res=>res.json())
-        .then(json=>{updateMans(json);
-            setEmployees(json)
+        .then(json=>{
+            updateMans(json);
+            setEmployees(json);
         });
     },[]);
     return(
