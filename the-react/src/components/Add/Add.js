@@ -17,3 +17,4 @@ const Add=()=>{
         </div>
     );
 }
+export{Add};
