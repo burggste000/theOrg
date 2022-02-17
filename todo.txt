@@ -1,4 +1,3 @@
 Tasks:
-    -Make the chart.
-    -Make the chart contain many employee objects
-    -Make the employee objects have a line connecting them to their manager
+    -Make all components know the JavaScript functions in my old project's index.js file.
+    -Ask Dad if I should have a smaller components that will be rendered in the add component for all of the input fields that get re-rendered in the forms.
