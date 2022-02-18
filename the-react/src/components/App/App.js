@@ -12,16 +12,13 @@ export default function App() {
     //     .then((res)=>res.json())
     //     .then((json)=>setData(json));
     // });
-    const[isAddClicked,setIsAddClicked]=React.useState(false);
     const[addWasClicked,setAddWasClicked]=React.useState(false);
     
     const bringAdd=()=>{
         setAddWasClicked(true);
-        setIsAddClicked(true);
     }
     const closeAdd=()=>{
         setAddWasClicked(false);
-        setIsAddClicked(false);
     }
     
     return(
