@@ -2,12 +2,9 @@ import"./delete.css";
 const deleteEmp=()=>{
     console.log("deleteEmp");
 }
-const closeForm2=()=>{
-    console.log("closeForm2");
-}
-const Delete=()=>{
+const Delete=(props)=>{
     return(
-        <div className="form-popup" id="myForm2">
+        <div className={props.deleteWasClicked?"form-popupOn":"form-popup"} id="myForm2">
             <form action="/action_page.php" className="form-container">
                 <h1>Delete Employee</h1>
                 <label htmlFor="text"><b>Identification Number</b></label>
@@ -17,7 +14,7 @@ const Delete=()=>{
                 <label htmlFor="text"><b>Job Title</b></label>
                 <input id="title2"type="text"readOnly />
                 <button id="deleteBtn"type="button" className="btn" onClick={deleteEmp}>Delete</button>
-                <button type="button" className="btn cancel" onClick={closeForm2}>Cancel</button>
+                <button type="button" className="btn cancel" onClick={props.closeDelete}>Cancel</button>
             </form>
       </div>
     );

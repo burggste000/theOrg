@@ -21,11 +21,21 @@ export default function App() {
         setAddWasClicked(false);
     }
     
+    const[deleteWasClicked,setDeleteWasClicked]=React.useState(false);
+    
+    const bringDelete=()=>{
+        setDeleteWasClicked(true);
+    }
+
+    const closeDelete=()=>{
+        setDeleteWasClicked(false);
+    }
+
     return(
     <>
-        <Header bringAdd={bringAdd} />
-        <Add addWasClicked={addWasClicked} closeAdd={closeAdd} />
-        <Delete />
+        <Header bringAdd={bringAdd}bringDelete={bringDelete} />
+        <Add addWasClicked={addWasClicked}closeAdd={closeAdd} />
+        <Delete deleteWasClicked={deleteWasClicked}closeDelete={closeDelete} />
         <Chart />
     </>
 
