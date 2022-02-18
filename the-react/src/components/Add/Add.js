@@ -6,7 +6,6 @@ const Add=()=>{
     const closeForm=()=>{
         console.log("closeForm");
     }
-    setIsAddClicked(true);
     return(
         <div className="form-popup" id="myForm">
             <form action="/action_page.php" className="form-container">
