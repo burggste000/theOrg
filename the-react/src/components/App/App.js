@@ -12,17 +12,25 @@ export default function App() {
     //     .then((res)=>res.json())
     //     .then((json)=>setData(json));
     // });
-<<<<<<< HEAD
-    // put stuff here ???
-  return(
-=======
     const[isAddClicked,setIsAddClicked]=React.useState(false);
-    const[isDeleteClicked,setIsDeleteClicked]=React.useState(false);
+    const[addWasClicked,setAddWasClicked]=React.useState(false);
+    
+    const bringAdd=()=>{
+        console.log(isAddClicked);
+        setAddWasClicked(true);
+        console.log(addWasClicked);
+        setIsAddClicked(true);
+    }
+
+    const closeAdd=()=>{
+        setAddWasClicked(false);
+        setIsAddClicked(false);
+    }
+    
     return(
->>>>>>> roughCopy
     <>
-        <Header />
-        <Add />
+        <Header bringAdd={bringAdd} />
+        <Add addWasClicked={addWasClicked} closeAdd={closeAdd} />
         <Delete />
         <Chart />
     </>
