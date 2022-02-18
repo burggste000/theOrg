@@ -12,8 +12,14 @@ export default function App() {
     //     .then((res)=>res.json())
     //     .then((json)=>setData(json));
     // });
+<<<<<<< HEAD
     // put stuff here ???
   return(
+=======
+    const[isAddClicked,setIsAddClicked]=React.useState(false);
+    const[isDeleteClicked,setIsDeleteClicked]=React.useState(false);
+    return(
+>>>>>>> roughCopy
     <>
         <Header />
         <Add />
