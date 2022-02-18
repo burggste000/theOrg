@@ -4,7 +4,7 @@ const Add=(props)=>{
         console.log("createEmp");
     }
     return(
-        <div className={props.addWasClicked?"form-popupOn":"form-popup"} id="myForm">
+        <div className={props.addWasClicked?null:"form-popup"} id="myForm">
             <form action="/action_page.php" className="form-container">
                 <h1>Add Employee</h1>
                 <label htmlFor="text"><b>Name</b></label>

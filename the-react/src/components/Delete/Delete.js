@@ -4,7 +4,7 @@ const deleteEmp=()=>{
 }
 const Delete=(props)=>{
     return(
-        <div className={props.deleteWasClicked?"form-popupOn":"form-popup"} id="myForm2">
+        <div className={props.deleteWasClicked?null:"form-popup"} id="myForm2">
             <form action="/action_page.php" className="form-container">
                 <h1>Delete Employee</h1>
                 <label htmlFor="text"><b>Identification Number</b></label>
