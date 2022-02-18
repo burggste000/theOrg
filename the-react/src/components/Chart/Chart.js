@@ -24,7 +24,7 @@ const updateMans=empAr=>{
     let managerCount = 0;
     let noManagerCount = 0;
     for(let element of empAr){
-        const managerr=empAr.find(e=>e.id==element.managerId);
+        const managerr=empAr.find(e=>e.id===element.managerId);
         if(managerr){
             ++managerCount;
             element.manager=managerr;
