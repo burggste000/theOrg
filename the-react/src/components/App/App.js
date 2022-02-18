@@ -16,12 +16,9 @@ export default function App() {
     const[addWasClicked,setAddWasClicked]=React.useState(false);
     
     const bringAdd=()=>{
-        console.log(isAddClicked);
         setAddWasClicked(true);
-        console.log(addWasClicked);
         setIsAddClicked(true);
     }
-
     const closeAdd=()=>{
         setAddWasClicked(false);
         setIsAddClicked(false);
