@@ -22,7 +22,6 @@ const Add=(props)=>{
             managerId:props.selectedEmp.id,
             title:newTitle
         };
-        console.log(newEmp);
         fetch("api/create",{
             method:'post',
             headers:{
@@ -46,7 +45,7 @@ const Add=(props)=>{
                 <label htmlFor="text"><b>Job Title</b></label>
                 <input id="title"type="text" placeholder="Enter Title"value={newTitle}onChange={e=>setNewTitle(e.target.value)} required />
                 <label htmlFor="text"><b>Manager</b></label>
-                <input id="managerName"type="text" placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
+                <input id="managerName"type="text"placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
                 <label htmlFor="text"><b>Manager Identification Number</b></label>
                 <input id="managerId"type="text" placeholder="Enter Manager Identification Number"value={props.selectedEmp?props.selectedEmp.id:''}readOnly />
                 <button type="button" className="btn" onClick={createEmp}>Create</button>

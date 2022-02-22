@@ -161,8 +161,6 @@ The updated employee data is returned in the response.
 */
 router.post('/create', function (req, res, next) {
     const e = req.body;
-    console.log(e);
-
     // The insert statement does not include the id.  The database will auto-generate the id.  See the CREATE TABLE comments in router.post('/employees',...).
     // Update: Added id back into the insert statement and used DEFAULT as the value for id.  See: https://www.postgresqltutorial.com/postgresql-serial/.
     let sql = "INSERT INTO Employees (id, name, \"managerId\", title) VALUES (DEFAULT, '" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",'" + e.title + "');";
@@ -179,6 +177,7 @@ The updated employee data is returned in the response.
 */
 router.post('/delete',(req, res, next)=>{
     const id=req.body;
+    console.log(id);
     let sql = "";
     sql += "UPDATE Employees SET \"managerId\" = (SELECT \"managerId\" From Employees WHERE id = " + id.id + ") WHERE \"managerId\" = " + id.id + ";";
     sql += "DELETE FROM Employees WHERE id=" + id.id + ";";
