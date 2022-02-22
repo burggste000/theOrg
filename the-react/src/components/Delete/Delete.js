@@ -1,6 +1,7 @@
 import"./delete.css";
-const deleteEmp=()=>{
-    console.log("deleteEmp");
+const deleteEmp=(props)=>{
+    
+
 }
 const Delete=(props)=>{
     return(
@@ -10,9 +11,9 @@ const Delete=(props)=>{
                 <label htmlFor="text"><b>Identification Number</b></label>
                 <input id="id2"type="text"readOnly />
                 <label htmlFor="text"><b>Name</b></label>
-                <input id="name2"type="text"readOnly />
+                <input id="name2"type="text"value={props.selectedEmp?props.selectedEmp.name:''}onChange={e=>props.setSelectedEmp({name:e.value})}readOnly />
                 <label htmlFor="text"><b>Job Title</b></label>
-                <input id="title2"type="text"readOnly />
+                <input id="title2"type="text"value={props.selectedEmp?props.selectedEmp.title:''}onChange={e=>props.setSelectedEmp({title:e.value})}readOnly />
                 <button id="deleteBtn"type="button" className="btn" onClick={deleteEmp}>Delete</button>
                 <button type="button" className="btn cancel" onClick={props.closeDelete}>Cancel</button>
             </form>

@@ -9,7 +9,7 @@ const renderEmployee=(employee, indentCount, components,onEmployeeClick) => {
     console.log('.'.repeat(indentCount * 4), employee.name);
     components.push(renderEmployeeJSX(employee,indentCount,onEmployeeClick));
     for(let e of employee.directs) {
-        renderEmployee(e, indentCount + 1, components);
+        renderEmployee(e, indentCount + 1, components,onEmployeeClick);
     }
     return components;
 };

@@ -1,6 +1,8 @@
 import"./add.css";
 import React from"react";
 const Add=(props)=>{
+    const[newName,setNewName]=React.useState('');
+    const[newTitle,setNewTitle]=React.useState('');
     const newId=()=>{
         let max=0;
         for(let element of props.employees){
@@ -16,12 +18,17 @@ const Add=(props)=>{
             return;
         const newEmp={
             id:newId(),
-            name:props.selectedEmp.name,
-            managerId:props.selectedEmp.managerId,
-            title:props.selectedEmp.title
+            name:newName,
+            managerId:props.selectedEmp.id,
+            title:newTitle
         };
+        console.log(newEmp);
         fetch("api/create",{
             method:'post',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
             body:JSON.stringify(newEmp)
         })
         .then(res=>res.json())
@@ -35,13 +42,13 @@ const Add=(props)=>{
             <form action="/action_page.php" className="form-container">
                 <h1>Add Employee</h1>
                 <label htmlFor="text"><b>Name</b></label>
-                <input id="name"type="text" placeholder="Enter Name"onChange={e=>props.setSelectedEmp({name:e.value})} required />
+                <input id="name"type="text" placeholder="Enter Name"value={newName}onChange={e=>setNewName(e.target.value)} required />
                 <label htmlFor="text"><b>Job Title</b></label>
-                <input id="title"type="text" placeholder="Enter Title"onChange={e=>props.setSelectedEmp({title:e.value})} required />
+                <input id="title"type="text" placeholder="Enter Title"value={newTitle}onChange={e=>setNewTitle(e.target.value)} required />
                 <label htmlFor="text"><b>Manager</b></label>
-                <input id="managerName"type="text" placeholder="Enter Manager"readonly />
+                <input id="managerName"type="text" placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
                 <label htmlFor="text"><b>Manager Identification Number</b></label>
-                <input id="managerId"type="text" placeholder="Enter Manager Identification Number"readonly />
+                <input id="managerId"type="text" placeholder="Enter Manager Identification Number"value={props.selectedEmp?props.selectedEmp.id:''}readOnly />
                 <button type="button" className="btn" onClick={createEmp}>Create</button>
                 <button type="button" className="btn cancel" onClick={props.closeAdd}>Cancel</button>
             </form>
