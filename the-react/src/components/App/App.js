@@ -11,6 +11,7 @@ export default function App() {
     const[addWasClicked,setAddWasClicked]=React.useState(false);
     
     const bringAdd=()=>{
+        setDeleteWasClicked(false);
         setAddWasClicked(true);
     }
     const closeAdd=()=>{
@@ -20,6 +21,7 @@ export default function App() {
     const[deleteWasClicked,setDeleteWasClicked]=React.useState(false);
     
     const bringDelete=()=>{
+        setAddWasClicked(false);
         setDeleteWasClicked(true);
     }
 

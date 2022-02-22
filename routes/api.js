@@ -177,7 +177,6 @@ The updated employee data is returned in the response.
 */
 router.post('/delete',(req, res, next)=>{
     const id=req.body;
-    console.log(id);
     let sql = "";
     sql += "UPDATE Employees SET \"managerId\" = (SELECT \"managerId\" From Employees WHERE id = " + id.id + ") WHERE \"managerId\" = " + id.id + ";";
     sql += "DELETE FROM Employees WHERE id=" + id.id + ";";
