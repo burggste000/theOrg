@@ -1,7 +1,6 @@
 Project Tasks:
-    -Add form work
-    -Delete form work
     -Has 2 database tables
 Tasks:
+    -How can I use reset.css in React?
     -Make all components know the JavaScript functions in my old project's index.js file.
     -Ask Dad if I should have a smaller components that will be rendered in the add component for all of the input fields that get re-rendered in the forms.

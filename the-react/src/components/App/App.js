@@ -7,7 +7,6 @@ import{Delete}from"../Delete/Delete.js";
 export default function App() {
     const[selectedEmp,setSelectedEmp]=React.useState(null);
 
-
     const[addWasClicked,setAddWasClicked]=React.useState(false);
     
     const bringAdd=()=>{
@@ -86,7 +85,7 @@ export default function App() {
 
     return(
     <>
-        <Header bringAdd={bringAdd}bringDelete={bringDelete} />
+        <Header bringAdd={bringAdd}bringDelete={bringDelete}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}} />
         <Add addWasClicked={addWasClicked}closeAdd={closeAdd}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
         <Delete deleteWasClicked={deleteWasClicked}closeDelete={closeDelete}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
         <Chart employees={employees}onEmployeeClick={employee=>setSelectedEmp(employee)} />
