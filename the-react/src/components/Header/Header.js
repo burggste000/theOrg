@@ -54,7 +54,6 @@ const Header=(props)=>{
 
     const handleChange=event=>{
         const fileUploaded=event.target.files[0];
-        // props.handleFile(fileUploaded);
         upload(fileUploaded);
     };
 
