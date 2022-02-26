@@ -1,1 +1,7 @@
-
+#chartDiv{
+    padding:50px 0;
+}
+#chartId{
+    height:100%;
+    overflow:auto;
+}

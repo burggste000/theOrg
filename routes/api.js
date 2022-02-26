@@ -196,6 +196,7 @@ router.get('/csv', function (req, res, next) {
             // Next comes the employees...
             for (let e of employees)
                 csvString += e.id + "," + e.name + "," + e.managerId + "," + e.title + "\r\n";
+            res.setHeader("content-type", "text/csv");
             res.status(200).send(csvString);
         },
         err => {
