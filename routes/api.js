@@ -63,7 +63,8 @@ Since the majority of endpoints return the updated dataset after performing thei
 In the future, this could be implemented with promises, thus enabling the .then().catch() pattern for callers of getEmployees(...).
 */
 const getEmployees = (onGot, onError) => {
-    const sql = "SELECT id, name, \"managerId\", title FROM Employees;"
+    //const sql = "SELECT id, name, \"managerId\", title FROM Employees;"
+    const sql = "SELECT * FROM Employees, Titles;"
     sequelize.query(sql)
     .then((results) => {
         console.log('api.js:getEmployees: ', results[0].length, ' employees returned from database: ', results[0]);
@@ -137,6 +138,7 @@ router.post('/employees', function (req, res, next) {
     sql += "CREATE TABLE Titles (id SERIAL PRIMARY KEY, title TEXT NOT NULL UNIQUE);";
     sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, \"managerId\" INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id));";
 
+    /*
     // Insert all of the values found in the post'ed request into the DB.
     sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES ";
     let count = 0;
@@ -145,11 +147,18 @@ router.post('/employees', function (req, res, next) {
             sql += ","
         sql += "(" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",'" + e.title + "')";
         }
-
     sql += ";";
+    */
+
+    // Insert all of the values found in the post-ed request into the DB.
+    let count = 0;
+    for (let e of employees) {
+        sql += "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
+        sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT (id) FROM Titles WHERE (title = " + e.title + "));";
+        }
 
     // Since the data uploaded has it's own id's, if future sql inserts are going to work, PostgreSQL needs to be update so that the auto id generator knows what the last id was.  See: https://dba.stackexchange.com/questions/243434/in-case-of-inserted-a-fixed-value-into-autoincrement-how-to-automatically-skip-i
-    sql += "select setval(pg_get_serial_sequence('employees', 'id'), (select max(id) from Employees));"
+    sql += "SELECT setval(pg_get_serial_sequence('employees', 'id'), (SELECT max(id) from Employees));"
 
     queryAndRespondWithEmployees(sql, res);
 });
@@ -165,7 +174,8 @@ router.post('/create', function (req, res, next) {
     const e = req.body;
     // The insert statement does not include the id.  The database will auto-generate the id.  See the CREATE TABLE comments in router.post('/employees',...).
     // Update: Added id back into the insert statement and used DEFAULT as the value for id.  See: https://www.postgresqltutorial.com/postgresql-serial/.
-    let sql = "INSERT INTO Employees (id, name, \"managerId\", title) VALUES (DEFAULT, '" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",'" + e.title + "');";
+    let sql = "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
+    sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT (id) FROM Titles WHERE (title = " + e.title + "));";
 
     queryAndRespondWithEmployees(sql, res);
 });
