@@ -131,12 +131,14 @@ router.post('/employees', function (req, res, next) {
     let sql = "";
     // Since we are uploading the entire data set, we simply drop any existing table.
     sql += "DROP TABLE IF EXISTS Employees;";
+    sql += "DROP TABLE IF EXISTS Titles;";
 
     // The id field is "SERIAL".  This is PostreSQL specific.  Other DBs have a mechanism for creating unique, auto-increment, primary keys.  If we wanted to use the Sequelize object model functions, this could be done in a database neurtral way, but for this project we are learning SQL, so, this will only work right with PostgreSQL.
-    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, \"managerId\" INTEGER, title TEXT);";
+    sql += "CREATE TABLE Titles (id SERIAL PRIMARY KEY, title TEXT NOT NULL UNIQUE);";
+    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, \"managerId\" INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id));";
 
     // Insert all of the values found in the post'ed request into the DB.
-    sql += "INSERT INTO Employees (id, name, \"managerId\", title) VALUES ";
+    sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES ";
     let count = 0;
     for (let e of employees) {
         if (count++)
