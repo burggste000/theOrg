@@ -51,7 +51,7 @@ export default function App() {
         let managerCount = 0;
         let noManagerCount = 0;
         for(let element of empAr){
-            const managerr=empAr.find(e=>e.id===element.managerId);
+            const managerr=empAr.find(e=>e.id===element.manager_id);
             if(managerr){
                 ++managerCount;
                 element.manager=managerr;

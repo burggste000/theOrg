@@ -19,7 +19,7 @@ const Add=(props)=>{
         const newEmp={
             id:newId(),
             name:newName,
-            managerId:props.selectedEmp.id,
+            manager_id:props.selectedEmp.id,
             title:newTitle
         };
         fetch("api/create",{
