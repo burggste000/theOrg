@@ -64,7 +64,7 @@ In the future, this could be implemented with promises, thus enabling the .then(
 */
 const getEmployees = (onGot, onError) => {
     //const sql = "SELECT id, name, \"managerId\", title FROM Employees;"
-    const sql = "SELECT * FROM Employees, Titles;"
+    const sql = "SELECT Employees.id, Employees.name, Employees.manager_id, Titles.title from Employees INNER JOIN Titles ON Employees.title_id = Titles.id;"
     sequelize.query(sql)
     .then((results) => {
         console.log('api.js:getEmployees: ', results[0].length, ' employees returned from database: ', results[0]);
@@ -136,7 +136,7 @@ router.post('/employees', function (req, res, next) {
 
     // The id field is "SERIAL".  This is PostreSQL specific.  Other DBs have a mechanism for creating unique, auto-increment, primary keys.  If we wanted to use the Sequelize object model functions, this could be done in a database neurtral way, but for this project we are learning SQL, so, this will only work right with PostgreSQL.
     sql += "CREATE TABLE Titles (id SERIAL PRIMARY KEY, title TEXT NOT NULL UNIQUE);";
-    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, \"managerId\" INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id));";
+    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, 'managerId' INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id));";
 
     /*
     // Insert all of the values found in the post'ed request into the DB.
@@ -154,10 +154,11 @@ router.post('/employees', function (req, res, next) {
     let count = 0;
     for (let e of employees) {
         sql += "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
-        sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT (id) FROM Titles WHERE (title = \"" + e.title + "\"));";
+        sql += "INSERT INTO Employees (id, name, 'managerId', title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",(SELECT id FROM Titles WHERE title = '" + e.title + "'));";
         }
 
     // Since the data uploaded has it's own id's, if future sql inserts are going to work, PostgreSQL needs to be update so that the auto id generator knows what the last id was.  See: https://dba.stackexchange.com/questions/243434/in-case-of-inserted-a-fixed-value-into-autoincrement-how-to-automatically-skip-i
+    sql += "SELECT setval(pg_get_serial_sequence('Titles', 'id'), (SELECT max(id) from Titles));"
     sql += "SELECT setval(pg_get_serial_sequence('employees', 'id'), (SELECT max(id) from Employees));"
 
     queryAndRespondWithEmployees(sql, res);
@@ -175,7 +176,7 @@ router.post('/create', function (req, res, next) {
     // The insert statement does not include the id.  The database will auto-generate the id.  See the CREATE TABLE comments in router.post('/employees',...).
     // Update: Added id back into the insert statement and used DEFAULT as the value for id.  See: https://www.postgresqltutorial.com/postgresql-serial/.
     let sql = "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
-    sql += "INSERT INTO Employees (id, name, \"managerId\", title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT (id) FROM Titles WHERE (title = " + e.title + "));";
+    sql += "INSERT INTO Employees (id, name, 'managerId', title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT id FROM Titles WHERE title = '" + e.title + "'));";
 
     queryAndRespondWithEmployees(sql, res);
 });
@@ -190,7 +191,7 @@ The updated employee data is returned in the response.
 router.post('/delete',(req, res, next)=>{
     const id=req.body;
     let sql = "";
-    sql += "UPDATE Employees SET \"managerId\" = (SELECT \"managerId\" From Employees WHERE id = " + id.id + ") WHERE \"managerId\" = " + id.id + ";";
+    sql += "UPDATE Employees SET 'managerId' = (SELECT 'managerId' From Employees WHERE id = " + id.id + ") WHERE 'managerId' = " + id.id + ";";
     sql += "DELETE FROM Employees WHERE id=" + id.id + ";";
 
     queryAndRespondWithEmployees(sql, res);
