@@ -46,6 +46,8 @@ const Add=(props)=>{
                 <input id="title"type="text" placeholder="Enter Title"value={newTitle}onChange={e=>setNewTitle(e.target.value)} required />
                 <label htmlFor="text"><b>Manager</b></label>
                 <input id="managerName"type="text"placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
+                <label htmlFor="text"><b>Picture Link</b></label>
+                <input type="text"placeholder="Enter a website link for a picture" />
                 <label htmlFor="text"><b>Manager Identification Number</b></label>
                 <input id="managerId"type="text" placeholder="Enter Manager Identification Number"value={props.selectedEmp?props.selectedEmp.id:''}readOnly />
                 <button type="button" className="btn" onClick={createEmp}>Create</button>
