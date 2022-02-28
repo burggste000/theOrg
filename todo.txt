@@ -1,6 +1,6 @@
 Project Tasks:
+    -Ask Dad why he didn't change managerId to manager_id in api.js on line 195?
     -Ask Dad the best way to make a fifth element to the CSV file be an empty string('')?
-    -Ask Dad why he has single quotes mixed in with his double quotes at api.js line 145?
     -The add button isn't working at all.
     -Upload doesn't reload doesn't work after deleting an employee unless the page has been refreshed.
 Tasks:

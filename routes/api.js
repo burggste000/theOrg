@@ -142,7 +142,7 @@ router.post('/employees', function (req, res, next) {
     let count = 0;
     for (let e of employees) {
         sql += "INSERT INTO Titles (id, title) VALUES (DEFAULT, '" + e.title + "') ON CONFLICT DO NOTHING;"
-        sql += "INSERT INTO Employees (id, name, manager_id, title_id,pic_link) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",(SELECT id FROM Titles WHERE title = '" + e.title + "'));";
+        sql += "INSERT INTO Employees (id, name, manager_id, title_id,pic_link) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",(SELECT id FROM Titles WHERE title = '" + e.title + "'),'"+e.pic_link+"');";
         }
 
     // Since the data uploaded has it's own id's, if future sql inserts are going to work, PostgreSQL needs to be update so that the auto id generator knows what the last id was.  See: https://dba.stackexchange.com/questions/243434/in-case-of-inserted-a-fixed-value-into-autoincrement-how-to-automatically-skip-i
@@ -164,7 +164,7 @@ router.post('/create', function (req, res, next) {
     // The insert statement does not include the id.  The database will auto-generate the id.  See the CREATE TABLE comments in router.post('/employees',...).
     // Update: Added id back into the insert statement and used DEFAULT as the value for id.  See: https://www.postgresqltutorial.com/postgresql-serial/.
     let sql = "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
-    sql += "INSERT INTO Employees (id, name, manager_id, title_id) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT id FROM Titles WHERE title = '" + e.title + "'));";
+    sql += "INSERT INTO Employees (id, name, manager_id, title_id,pic_link) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",SELECT id FROM Titles WHERE title = '" + e.title + "'),'"+e.pic_link+"');";
 
     queryAndRespondWithEmployees(sql, res);
 });
@@ -192,11 +192,11 @@ router.get('/csv', function (req, res, next) {
     getEmployees(
         employees => {
             // The first row is the header row.
-            let csvString = "id,name,managerId,title\r\n";
+            let csvString = "id,name,managerId,title,pic_link\r\n";
 
             // Next comes the employees...
             for (let e of employees)
-                csvString += e.id + "," + e.name + "," + e.manager_id + "," + e.title + "\r\n";
+                csvString += e.id + "," + e.name + "," + e.manager_id + "," + e.title + ","+e.pic_link+"\r\n";
             res.setHeader("content-type", "text/csv");
             res.status(200).send(csvString);
         },
