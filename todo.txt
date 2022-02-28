@@ -1,5 +1,6 @@
 Project Tasks:
-    -Has 2 database tables
+    -The add button isn't working at all.
+    -Upload doesn't reload doesn't work after deleting an employee unless the page has been refreshed.
 Tasks:
     -How can I use reset.css in React?
     -Make all components know the JavaScript functions in my old project's index.js file.

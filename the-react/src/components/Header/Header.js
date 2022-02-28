@@ -48,7 +48,10 @@ const Header=(props)=>{
 
     
     const hiddenFileInput=React.useRef(null);
+
     const handleClick=event=>{
+        props.setDeleteWasClicked(false);
+        props.setAddWasClicked(false);
         hiddenFileInput.current.click();
     };
 
@@ -56,7 +59,6 @@ const Header=(props)=>{
         const fileUploaded=event.target.files[0];
         upload(fileUploaded);
     };
-
 
     return(
         <header>

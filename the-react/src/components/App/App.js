@@ -85,7 +85,7 @@ export default function App() {
 
     return(
         <>
-            <Header bringAdd={bringAdd}bringDelete={bringDelete}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}} />
+            <Header bringAdd={bringAdd}bringDelete={bringDelete}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}setAddWasClicked={setAddWasClicked}setDeleteWasClicked={setDeleteWasClicked} />
             <Add addWasClicked={addWasClicked}closeAdd={closeAdd}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
             <Delete deleteWasClicked={deleteWasClicked}closeDelete={closeDelete}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
             <div id="chartDiv">
