@@ -3,6 +3,8 @@ import React from"react";
 const Add=(props)=>{
     const[newName,setNewName]=React.useState('');
     const[newTitle,setNewTitle]=React.useState('');
+    const[newPicLink,setNewPicLink]=React.useState('');
+
     const newId=()=>{
         let max=0;
         for(let element of props.employees){
@@ -44,16 +46,16 @@ const Add=(props)=>{
                 <input id="name"type="text" placeholder="Enter Name"value={newName}onChange={e=>setNewName(e.target.value)} required />
                 <label htmlFor="text"><b>Job Title</b></label>
                 <input id="title"type="text" placeholder="Enter Title"value={newTitle}onChange={e=>setNewTitle(e.target.value)} required />
+                <label htmlFor="text"><b>Picture Link</b></label>
+                <input type="text"placeholder="Enter a website link for a picture"value={newPicLink}onChange={e=>newPicLink===''?setNewPicLink("https://www.shutterstock.com/image-vector/anonymous-vector-icon-privacy-concept-human-1550698070"):setNewPicLink(e.target.value)} />
                 <label htmlFor="text"><b>Manager</b></label>
                 <input id="managerName"type="text"placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
-                <label htmlFor="text"><b>Picture Link</b></label>
-                <input type="text"placeholder="Enter a website link for a picture" />
                 <label htmlFor="text"><b>Manager Identification Number</b></label>
                 <input id="managerId"type="text" placeholder="Enter Manager Identification Number"value={props.selectedEmp?props.selectedEmp.id:''}readOnly />
                 <button type="button" className="btn" onClick={createEmp}>Create</button>
                 <button type="button" className="btn cancel" onClick={props.closeAdd}>Cancel</button>
             </form>
-        </div> 
+        </div>
     );
 }
 export{Add};
