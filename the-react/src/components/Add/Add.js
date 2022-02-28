@@ -22,7 +22,8 @@ const Add=(props)=>{
             id:newId(),
             name:newName,
             manager_id:props.selectedEmp.id,
-            title:newTitle
+            title:newTitle,
+            pic_link:newPicLink
         };
         fetch("api/create",{
             method:'post',

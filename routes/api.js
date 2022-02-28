@@ -136,7 +136,7 @@ router.post('/employees', function (req, res, next) {
 
     // The id field is "SERIAL".  This is PostreSQL specific.  Other DBs have a mechanism for creating unique, auto-increment, primary keys.  If we wanted to use the Sequelize object model functions, this could be done in a database neurtral way, but for this project we are learning SQL, so, this will only work right with PostgreSQL.
     sql += "CREATE TABLE Titles (id SERIAL PRIMARY KEY, title TEXT NOT NULL UNIQUE);";
-    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, manager_id INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id));";
+    sql += "CREATE TABLE Employees (id SERIAL PRIMARY KEY, name TEXT NOT NULL, manager_id INTEGER, title_id INTEGER NOT NULL REFERENCES Titles(id),pic_link TEXT);";
 
     // Insert all of the values found in the post-ed request into the DB.
     let count = 0;
