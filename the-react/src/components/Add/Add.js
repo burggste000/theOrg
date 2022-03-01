@@ -25,6 +25,7 @@ const Add=(props)=>{
             title:newTitle,
             pic_link:newPicLink
         };
+        console.log("managerId: ", newEmp.manager_id);
         fetch("api/create",{
             method:'post',
             headers:{

@@ -64,7 +64,7 @@ In the future, this could be implemented with promises, thus enabling the .then(
 */
 const getEmployees = (onGot, onError) => {
     //const sql = "SELECT id, name, manager_id, title FROM Employees;"
-    const sql = "SELECT Employees.id, Employees.name, Employees.manager_id, Titles.title from Employees INNER JOIN Titles ON Employees.title_id = Titles.id, Employees.pic_link;"
+    const sql = "SELECT Employees.id, Employees.name, Employees.manager_id, Titles.title, Employees.pic_link from Employees INNER JOIN Titles ON Employees.title_id = Titles.id;"
     sequelize.query(sql)
     .then((results) => {
         console.log('api.js:getEmployees: ', results[0].length, ' employees returned from database: ', results[0]);
@@ -161,10 +161,11 @@ The updated employee data is returned in the response.
 */
 router.post('/create', function (req, res, next) {
     const e = req.body;
+    console.log("New Emp: ", e);
     // The insert statement does not include the id.  The database will auto-generate the id.  See the CREATE TABLE comments in router.post('/employees',...).
     // Update: Added id back into the insert statement and used DEFAULT as the value for id.  See: https://www.postgresqltutorial.com/postgresql-serial/.
-    let sql = "INSERT INTO Titles (id, title) VALUES (DEFAULT, " + e.title + ") ON CONFLICT DO NOTHING;"
-    sql += "INSERT INTO Employees (id, name, manager_id, title_id, pic_link) VALUES (" + e.id + ",'" + e.name + "'," + (e.managerId ? e.managerId : "0") + ",(SELECT id FROM Titles WHERE title = '" + e.title + "'),'"+e.pic_link+"');";
+    let sql = "INSERT INTO Titles (id, title) VALUES (DEFAULT, '" + e.title + "') ON CONFLICT DO NOTHING;"
+    sql += "INSERT INTO Employees (name, manager_id, title_id, pic_link) VALUES ('" + e.name + "'," + (e.manager_id ? e.manager_id : "0") + ",(SELECT id FROM Titles WHERE title = '" + e.title + "'),'"+e.pic_link+"');";
 
     queryAndRespondWithEmployees(sql, res);
 });
