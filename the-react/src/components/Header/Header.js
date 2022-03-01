@@ -14,7 +14,8 @@ const Header=(props)=>{
                 id:cells[0].trim(),
                 name:cells[1].trim(),
                 managerId:cells[2].trim(),
-                title:cells[3].trim()
+                title: cells[3].trim(),
+                pic_link: cells[4].trim()
             };
             arrEmployees.push(employee);
         }
