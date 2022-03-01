@@ -2,7 +2,7 @@ import"./chart.css";
 import React from "react";  
 
 const renderEmployeeJSX=(employee,indentCount,onEmployeeClick) => {
-    return <tr key={employee.id}><td onClick={()=>onEmployeeClick(employee)}>{'\u00a0'.repeat(indentCount * 4) + employee.name}</td><td>{employee.title}</td><td>{employee.manager?employee.manager.name:''}</td></tr>;
+    return <tr key={employee.id}><td onClick={()=>onEmployeeClick(employee)}>{'\u00a0'.repeat(indentCount * 4) + employee.name}</td><td>{employee.title}</td><td>{employee.manager?employee.manager.name:''}</td><td><img src={employee.pic_link?employee.pic_link:"https://image.shutterstock.com/image-vector/anonymous-vector-icon-privacy-concept-600w-1550698070.jpg"} /></td></tr>;
 }
 
 const renderEmployee=(employee, indentCount, components,onEmployeeClick) => {

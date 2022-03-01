@@ -37,12 +37,14 @@ const Header=(props)=>{
                 },
                 body:JSON.stringify(serversArr)
             })
-            .then(res=>res.json())
+            .then(res=>{ console.log("Uploaded, converting JSON..."); res.json(); })
             .then(json=>{
+                console.log("Saving employees.");
                 props.setEmployees(json);
             })
             .catch(err => console.log(err));
         }
+        console.log("Uploading...");
         reader.readAsText(fileUploaded);
     }
 

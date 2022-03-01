@@ -48,7 +48,7 @@ const Add=(props)=>{
                 <label htmlFor="text"><b>Job Title</b></label>
                 <input id="title"type="text" placeholder="Enter Title"value={newTitle}onChange={e=>setNewTitle(e.target.value)} required />
                 <label htmlFor="text"><b>Picture Link</b></label>
-                <input type="text"placeholder="Enter a website link for a picture"value={newPicLink}onChange={e=>newPicLink===''?setNewPicLink("https://www.shutterstock.com/image-vector/anonymous-vector-icon-privacy-concept-human-1550698070"):setNewPicLink(e.target.value)} />
+                <input type="text"placeholder="Enter a website link for a picture"value={newPicLink}onChange={e=>setNewPicLink(e.target.value)} />
                 <label htmlFor="text"><b>Manager</b></label>
                 <input id="managerName"type="text"placeholder="Enter Manager"value={props.selectedEmp?props.selectedEmp.name:''}readOnly />
                 <label htmlFor="text"><b>Manager Identification Number</b></label>
