@@ -1,7 +1,8 @@
 Project Tasks:
+    -The download button doesn't work.
+    -Show Dad the bug I get when I click on an employee name, delete employee, delete, cancel quickly.
     -Ask Dad the best way to make a fifth element to the CSV file be an empty string('')?
-    -The add button isn't working at all.
-    -Upload doesn't reload doesn't work after deleting an employee unless the page has been refreshed.
+    -Upload doesn't automatically refresh when an employee is added. I have to manually click refresh.
 Tasks:
     -How can I use reset.css in React?
     -Make all components know the JavaScript functions in my old project's index.js file.

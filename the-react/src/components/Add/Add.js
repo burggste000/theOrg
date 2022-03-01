@@ -36,8 +36,9 @@ const Add=(props)=>{
         })
         .then(res=>res.json())
         .then(json=>{
-        props.setEmployees(json);
-        }).catch(err => console.log(err));
+            props.setEmployees(json);
+        })
+        .catch(err=>console.log(err));
     }
     
     return(
