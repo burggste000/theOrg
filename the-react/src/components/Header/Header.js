@@ -47,21 +47,24 @@ const Header=(props)=>{
         }
         console.log("Uploading...");
         reader.readAsText(fileUploaded);
+
     }
 
     
     const hiddenFileInput=React.useRef(null);
 
-    const handleClick=event=>{
+    const handleClick=async(event)=>{
         props.setDeleteWasClicked(false);
         props.setAddWasClicked(false);
-        hiddenFileInput.current.click();
+        await hiddenFileInput.current.click();
     };
 
     const handleChange=event=>{
         const fileUploaded=event.target.files[0];
         upload(fileUploaded);
     };
+
+
 
     return(
         <header>

@@ -6,8 +6,9 @@ import{Add}from"../Add/Add.js";
 import{Delete}from"../Delete/Delete.js";
 export default function App() {
     const[selectedEmp,setSelectedEmp]=React.useState(null);
-
     const[addWasClicked,setAddWasClicked]=React.useState(false);
+    const[deleteWasClicked,setDeleteWasClicked]=React.useState(false);
+    const[employees,setEmployees]=React.useState([]);
     
     const bringAdd=()=>{
         setDeleteWasClicked(false);
@@ -17,7 +18,6 @@ export default function App() {
         setAddWasClicked(false);
     }
     
-    const[deleteWasClicked,setDeleteWasClicked]=React.useState(false);
     
     const bringDelete=()=>{
         setAddWasClicked(false);
@@ -73,7 +73,6 @@ export default function App() {
         console.log("Employee Count: ", countEmployees(empAr));
     }  
 
-    const[employees,setEmployees]=React.useState([]);
     React.useEffect(()=>{
         fetch("/api/employees")
         .then(res=>res.json())
@@ -83,11 +82,34 @@ export default function App() {
         });
     },[]);
 
+    const deleteEmp=()=>{
+        if(selectedEmp.directs)
+            selectedEmp.directs=null;
+            selectedEmp.manager=null;
+            console.log(selectedEmp);
+        if(!selectedEmp)
+            return;
+        fetch("api/delete",{
+            method:'post',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify(selectedEmp)})
+        .then(res=>res.json())
+        .then(json=>{
+            // console.log(json);
+            setEmployees(json);
+        })
+        .catch(err=>console.log(err));
+    }
+
+
     return(
         <>
             <Header bringAdd={bringAdd}bringDelete={bringDelete}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}setAddWasClicked={setAddWasClicked}setDeleteWasClicked={setDeleteWasClicked} />
             <Add addWasClicked={addWasClicked}closeAdd={closeAdd}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
-            <Delete deleteWasClicked={deleteWasClicked}closeDelete={closeDelete}employees={employees}setEmployees={(emps)=>{updateMans(emps);setEmployees(emps)}}selectedEmp={selectedEmp} />
+            <Delete deleteWasClicked={deleteWasClicked}closeDelete={closeDelete}deleteEmp={deleteEmp}selectedEmp={selectedEmp} />
             <div id="chartDiv">
                 <Chart id="chartId"employees={employees}onEmployeeClick={employee=>setSelectedEmp(employee)} />
             </div>
