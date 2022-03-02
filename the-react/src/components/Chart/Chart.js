@@ -8,6 +8,9 @@ const renderEmployeeJSX=(employee,indentCount,onEmployeeClick) => {
 const renderEmployee=(employee, indentCount, components,onEmployeeClick) => {
     console.log('.'.repeat(indentCount * 4), employee.name);
     components.push(renderEmployeeJSX(employee,indentCount,onEmployeeClick));
+    if(!employee.directs){
+        console.log("Employee with null directs: ",employee);
+    }
     for(let e of employee.directs) {
         renderEmployee(e, indentCount + 1, components,onEmployeeClick);
     }

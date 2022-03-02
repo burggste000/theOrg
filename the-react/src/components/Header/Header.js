@@ -73,8 +73,8 @@ const Header=(props)=>{
                 <input type="button" id="upload" className="menu"value="Upload"onClick={handleClick} />
                 <input id="addBtn" type="button" value="Add Employee" className="menu"onClick={()=>props.bringAdd()} />
                 <input type="button" value="Delete Employee" className="menu"onClick={()=>props.bringDelete()} />
-                <a href="/api/csv" id="downloadCSV"className="menu"download="org.csv">Download</a>
-                {/* <a href="http://localhost:3001/api/csv" id="downloadCSV"className="menu"download="org.csv">Download</a> */}
+                {/* <a href="/api/csv" id="downloadCSV"className="menu"download="org.csv">Download</a> */}
+                <a href="http://localhost:3001/api/csv" id="downloadCSV"className="menu"download="org.csv">Download</a>
             </div>
         </header>
     );

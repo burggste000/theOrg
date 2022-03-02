@@ -55,7 +55,7 @@ export default function App() {
             if(managerr){
                 ++managerCount;
                 element.manager=managerr;
-                if (!('directs' in managerr))
+                if (!('directs' in managerr)) //Checking for a directs property on managerr
                     managerr.directs = [];
                 managerr.directs.push(element);
             }
@@ -83,12 +83,11 @@ export default function App() {
     },[]);
 
     const deleteEmp=()=>{
-        if(selectedEmp.directs)
-            selectedEmp.directs=null;
-            selectedEmp.manager=null;
-            console.log(selectedEmp);
         if(!selectedEmp)
             return;
+        if(selectedEmp.directs)
+            selectedEmp.directs=[];
+        selectedEmp.manager=null;
         fetch("api/delete",{
             method:'post',
             headers:{
@@ -98,7 +97,7 @@ export default function App() {
             body:JSON.stringify(selectedEmp)})
         .then(res=>res.json())
         .then(json=>{
-            // console.log(json);
+            updateMans(json);// delete wasn't working, because employees that come back from the server don't have a manager or directs properties 
             setEmployees(json);
         })
         .catch(err=>console.log(err));

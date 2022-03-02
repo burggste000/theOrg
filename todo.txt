@@ -3,7 +3,5 @@ Project Tasks:
     -Show Dad the bug I get when I click on an employee name, delete employee, delete, cancel quickly.
     -Upload doesn't automatically refresh when an employee is added. I have to manually click refresh.
     -The download button doesn't work.
-Tasks:
+Other Tasks:
     -How can I use reset.css in React?
-    -Make all components know the JavaScript functions in my old project's index.js file.
-    -Ask Dad if I should have a smaller components that will be rendered in the add component for all of the input fields that get re-rendered in the forms.
