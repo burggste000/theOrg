@@ -5,3 +5,8 @@ Project Tasks:
     -The download button doesn't work.
 Other Tasks:
     -How can I use reset.css in React?
+
+Other Goals for the project:
+    Make a program that displays an orginazation that is readable from a zoomed out scale. When the names are 
+    hovered over, they enlarge. When you click on them you can see a picture of the person. You can check a box
+    on them if you have met that person before.
