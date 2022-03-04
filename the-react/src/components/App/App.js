@@ -73,7 +73,7 @@ export default function App() {
         console.log("Employee Count: ", countEmployees(empAr));
     }  
 
-    React.useEffect(()=>{
+    React.useEffect(()=>{           //This hook exicutes everytime a state variable is set to a new value.
         fetch("/api/employees")
         .then(res=>res.json())
         .then(json=>{
